@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, argv) => {
@@ -12,23 +11,24 @@ module.exports = (env, argv) => {
 	return {
 		context: path.resolve(__dirname, './src'),
 
-		entry: {
-			app: './app.tsx'
-		},
+		entry: { app: './index.tsx' },
 
 		output: {
-			filename: '[name].[contenthash].bundle.js',
-			chunkFilename: '[name].[contenthash].bundle.js',
-			path: path.resolve(__dirname, 'dist'),
+			filename: '[name].[hash].bundle.js',
+			chunkFilename: '[name].[hash].bundle.js',
+			path: path.resolve(__dirname, 'dist')
 		},
 
-		devtool: "source-map",
+		devServer: {
+			open: true,
+			hot: true
+		},
 
 		resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
 
 		module: {
 			rules: [
-				{ test: /\.tsx?$/, loader: 'ts-loader', options: { transpileOnly: true } },
+				{ test: /\.tsx?$/, loader: 'babel-loader' },
 				{
 					test: /\.scss$/,
 					use: [
@@ -37,7 +37,13 @@ module.exports = (env, argv) => {
 						"sass-loader"
 					]
 				},
-				{ test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=assets/[name].[ext]' },
+				{
+					test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+					loader: 'file-loader',
+					options: {
+						name: 'assets/[name].[ext]'
+					}
+				},
 				{
 					test: /\.(png|jpg|gif)$/,
 					use: [
@@ -77,21 +83,13 @@ module.exports = (env, argv) => {
 		],
 
 		optimization: {
+			minimize: true,
+			minimizer: [new TerserPlugin()],
 			splitChunks: {
 				cacheGroups: {
-					commons: { test: /[\\/]node_modules[\\/]/, name: "vendors", chunks: "all" }
+					commons: { test: /[\\/]node_modules[\\/]/, name: 'vendors', chunks: 'all' }
 				}
-			},
-			minimizer: [
-				new UglifyJsPlugin({
-					uglifyOptions: {
-						output: {
-							comments: false
-						}
-					}
-				}),
-				new OptimizeCSSAssetsPlugin({})
-			]
+			}
 		}
 	}
 }

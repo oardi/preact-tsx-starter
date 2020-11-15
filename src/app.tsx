@@ -1,25 +1,22 @@
-import { h, render, Component } from 'preact';
+import { h } from 'preact';
+import { ButtonCounter } from './components/button-counter';
 import './style.scss';
-import { ButtonCounter } from './app/button-counter';
 
-export class App extends Component<{}, {}> {
-	onChildClicked(e: number) {
-		console.warn('callback from parent triggered', e);
+export const App = () => {
+	const onChildClicked = (e: number) => {
+		console.warn("callback from parent triggered", e);
 	}
 
-	render() {
-		return (
-			<div className='container pt-2'>
-				<h1>Preact Typescript Starter Template</h1>
+	return (
+		<div className="container pt-2" >
+			<h1>Preact Typescript Starter Template</h1>
 
-				<p>
-					Simple Preact Typescript TSX Template with a custom ButtonCounter Component.
+			<p>
+				Simple Preact Typescript TSX Template with a custom ButtonCounter Component.
                 </p>
 
-				<ButtonCounter name='Preact TSX' onClicked={(e) => this.onChildClicked(e)} />
-			</div>
-		);
-	}
-}
+			<ButtonCounter name="Preact TSX" onClicked={(e) => onChildClicked(e)} />
+		</div>
+	);
 
-render(<App />, document.body);
+}
