@@ -13,9 +13,9 @@ export const App = () => {
 
 			<p>
 				Simple Preact Typescript TSX Template with a custom ButtonCounter Component.
-                </p>
+            </p>
 
-			<ButtonCounter name="Preact TSX" onClicked={(e) => onChildClicked(e)} />
+			<ButtonCounter name="click me" onClicked={(e) => onChildClicked(e)} />
 		</div>
 	);
 

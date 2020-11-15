@@ -20,15 +20,22 @@ module.exports = (env, argv) => {
 		},
 
 		devServer: {
+			publicPath: '/',
 			open: true,
 			hot: true
 		},
 
-		resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
+		resolve: {
+			extensions: ['.ts', '.tsx', '.js', '.jsx']
+		},
 
 		module: {
 			rules: [
-				{ test: /\.tsx?$/, loader: 'babel-loader' },
+				{
+					test: /\.tsx?$/,
+					exclude: /node_modules/,
+					loader: 'ts-loader'
+				},
 				{
 					test: /\.scss$/,
 					use: [
