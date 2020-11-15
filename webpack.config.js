@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -14,13 +14,12 @@ module.exports = (env, argv) => {
 		entry: { app: './index.tsx' },
 
 		output: {
-			filename: '[name].[hash].bundle.js',
-			chunkFilename: '[name].[hash].bundle.js',
+			filename: '[name].[fullhash].bundle.js',
+			chunkFilename: '[name].[fullhash].bundle.js',
 			path: path.resolve(__dirname, 'dist')
 		},
 
 		devServer: {
-			publicPath: '/',
 			open: true,
 			hot: true
 		},
@@ -81,9 +80,9 @@ module.exports = (env, argv) => {
 				filename: "style.css",
 				chunkFilename: "style.css"
 			}),
-			new CopyWebpackPlugin([
-				// copy static assets here
-			]),
+			// new CopyWebpackPlugin([
+			// 	// copy static assets here
+			// ]),
 			new webpack.DefinePlugin({
 				// define environment vars here
 			})
