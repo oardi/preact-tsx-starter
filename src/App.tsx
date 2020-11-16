@@ -5,6 +5,7 @@ import { About, Home } from './pages';
 import { HttpService, LoggerService } from './shared';
 import { AppContext } from './AppContext';
 import './style.scss';
+import { Sidebar } from './shared/components/Sidebar';
 
 export const App = () => {
 	const appContext = {
@@ -15,23 +16,27 @@ export const App = () => {
 
 	return (
 		<AppContext.Provider value={appContext}>
-			<div className="container pt-2" >
-				<h1>Preact Typescript Starter Template</h1>
+			<div class="app">
+				<Sidebar />
 
-				<div>
-					<Link class="btn btn-sm btn-primary" activeClassName="active" href="/">Home</Link>
-					<Link class="btn btn-sm btn-primary" activeClassName="active" href="/about">About</Link>
-				</div>
+				<div className="container pt-2" >
+					<h1>Preact Typescript Starter Template</h1>
 
-				<Router history={createHashHistory()}>
-					<Route path="/" component={Home} />
-					<Route path="/about" component={About} />
+					<div>
+						<Link class="btn btn-sm btn-primary" activeClassName="active" href="/">Home</Link>
+						<Link class="btn btn-sm btn-primary" activeClassName="active" href="/about">About</Link>
+					</div>
 
-					<div default>
-						404
+					<Router history={createHashHistory()}>
+						<Route path="/" component={Home} />
+						<Route path="/about" component={About} />
+
+						<div default>
+							404
       				</div>
-				</Router>
+					</Router>
 
+				</div>
 			</div>
 		</AppContext.Provider>
 	);

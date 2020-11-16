@@ -1,0 +1,24 @@
+.sidebar {
+	background: var(--primary);
+	width: 14rem !important;
+
+	.sidebar-brand {
+		height: 4.375rem;
+		text-decoration: none;
+		font-size: 1rem;
+		font-weight: 800;
+		padding: 1.5rem 1rem;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.05rem;
+		z-index: 1;
+	}
+
+	.navbar-dark .sidebar-brand {
+		color: #fff;
+	}
+
+	.navbar-dark .nav-item .nav-link:hover {
+		color: #fff;
+	}
+}
