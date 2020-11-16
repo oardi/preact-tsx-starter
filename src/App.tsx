@@ -1,11 +1,12 @@
 import { h } from 'preact';
 import { createHashHistory } from 'history';
-import Router, { Route } from 'preact-router';
+import Router, { Route, RouterOnChangeArgs } from 'preact-router';
+import './style.scss';
 import { About, Home } from './pages';
 import { HttpService, LoggerService } from './shared';
+import { AppSidebar } from './components';
 import { AppContext } from './AppContext';
-import { AppSidebar } from './components/AppSidebar';
-import './style.scss';
+import { useState } from 'preact/hooks';
 
 export const App = () => {
 	const appContext = {
@@ -14,24 +15,28 @@ export const App = () => {
 		// languageService: new LanguageService()
 	}
 
+	const [currentRoute, setCurrentRoute] = useState<string>('');
+	const onRouteChange = (e: RouterOnChangeArgs) => {
+		setCurrentRoute(e.url);
+	};
+
 	return (
 		<AppContext.Provider value={appContext}>
 			<div class="app">
-				<AppSidebar />
+				<AppSidebar currentRoute={currentRoute} />
 
 				<div className="container pt-2" >
-					<Router history={createHashHistory()}>
+					<Router onChange={(e) => onRouteChange(e)} history={createHashHistory()}>
 						<Route path="/" component={Home} />
 						<Route path="/about" component={About} />
 
 						<div default>
 							404
-      				</div>
+      					</div>
 					</Router>
 
 				</div>
 			</div>
 		</AppContext.Provider>
 	);
-
 }

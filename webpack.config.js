@@ -21,10 +21,10 @@ module.exports = (env, argv) => {
 
 		devServer: {
 			open: true,
-			hot: true
+			// hot: true
 		},
 
-		devtool: "source-map",
+		// devtool: "source-map",
 
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
