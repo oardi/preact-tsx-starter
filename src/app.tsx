@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { ButtonCounter } from './components/button-counter';
+import { ButtonCounter } from './components/ButtonCounter';
 import './style.scss';
 
 export const App = () => {
