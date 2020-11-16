@@ -1,11 +1,22 @@
 import { h, Fragment } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useEffect } from 'preact/hooks';
 import { AppContext } from '../AppContext';
 import { ButtonCounter } from '../components/ButtonCounter';
 import { Card, CardBody, CardText, CardTitle } from '../shared';
 
 export const Home = () => {
-	const { loggerService } = useContext(AppContext);
+	const { loggerService, httpService } = useContext(AppContext);
+
+	useEffect(() => {
+		init();
+	}, []);
+
+	const init = async () => {
+		try {
+			const data = await httpService.get('./public/test.json');
+			loggerService.warn(data.data);
+		} catch (err) { loggerService.error(err); }
+	}
 
 	const onChildClicked = () => {
 		loggerService.warn('callback from parent triggered');

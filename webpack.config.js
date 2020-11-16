@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -23,6 +23,8 @@ module.exports = (env, argv) => {
 			open: true,
 			hot: true
 		},
+
+		devtool: "source-map",
 
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -80,9 +82,14 @@ module.exports = (env, argv) => {
 				filename: "style.css",
 				chunkFilename: "style.css"
 			}),
-			// new CopyWebpackPlugin([
-			// 	// copy static assets here
-			// ]),
+			new CopyWebpackPlugin({
+				patterns: [
+					{
+						from: path.resolve(__dirname, 'public'),
+						to: 'public'
+					},
+				]
+			}),
 			new webpack.DefinePlugin({
 				// define environment vars here
 			})
