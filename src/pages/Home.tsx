@@ -1,5 +1,6 @@
 import { h, Fragment } from 'preact';
 import { ButtonCounter } from '../components/ButtonCounter';
+import { Card, CardBody, CardText, CardTitle } from '../shared';
 
 export const Home = () => {
 	const onChildClicked = () => {
@@ -11,6 +12,16 @@ export const Home = () => {
 			<h1>
 				Home
 			</h1>
+
+			<Card>
+				<CardBody>
+					<CardTitle>some title</CardTitle>
+					<CardText>
+						a card
+					</CardText>
+				</CardBody>
+			</Card>
+
 			<ButtonCounter
 				name="Click me"
 				onClicked={(e) => onChildClicked()}
