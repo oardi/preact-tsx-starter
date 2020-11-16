@@ -1,21 +1,38 @@
 import { h } from "preact";
+import { Link } from 'preact-router';
 import './Sidebar.scss';
 
-export const Sidebar = () => {
+export interface ISidebarItems {
+	id: string;
+	path: string;
+	icon?: string;
+}
+
+interface ISidebarProps {
+	title: string;
+	items: Array<ISidebarItems>;
+}
+
+export const Sidebar = ({ title, items }: ISidebarProps) => {
+
 	return (
 		<nav class="sidebar navbar navbar-expand-lg navbar-dark bg-primary align-items-start">
 			<ul class="navbar-nav navbar-dark accordion d-flex flex-column">
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center">
 					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
 					</div>
-					<div class="sidebar-brand-text mx-3">Preact TSX</div>
+					<div class="sidebar-brand-text mx-3">
+						{title}
+					</div>
 				</a>
-				<li class="nav-item">
-					<a class="nav-link" href="index.html">
-						<i class="fas fa-fw fa-tachometer-alt"></i>
-						<span>Dashboard</span></a>
-				</li>
+
+				{items.map(item =>
+					<li class="nav-item">
+						<Link class="nav-link" activeClassName="active" href={"/" + item.path}>
+							{item.id}
+						</Link>
+					</li>
+				)}
 			</ul>
 		</nav>
 	);

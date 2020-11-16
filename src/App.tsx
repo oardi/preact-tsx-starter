@@ -1,11 +1,11 @@
 import { h } from 'preact';
 import { createHashHistory } from 'history';
-import Router, { Link, Route } from 'preact-router';
+import Router, { Route } from 'preact-router';
 import { About, Home } from './pages';
 import { HttpService, LoggerService } from './shared';
 import { AppContext } from './AppContext';
+import { AppSidebar } from './components/AppSidebar';
 import './style.scss';
-import { Sidebar } from './shared/components/Sidebar';
 
 export const App = () => {
 	const appContext = {
@@ -17,16 +17,9 @@ export const App = () => {
 	return (
 		<AppContext.Provider value={appContext}>
 			<div class="app">
-				<Sidebar />
+				<AppSidebar />
 
 				<div className="container pt-2" >
-					<h1>Preact Typescript Starter Template</h1>
-
-					<div>
-						<Link class="btn btn-sm btn-primary" activeClassName="active" href="/">Home</Link>
-						<Link class="btn btn-sm btn-primary" activeClassName="active" href="/about">About</Link>
-					</div>
-
 					<Router history={createHashHistory()}>
 						<Route path="/" component={Home} />
 						<Route path="/about" component={About} />
