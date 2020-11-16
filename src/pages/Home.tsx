@@ -1,10 +1,14 @@
 import { h, Fragment } from 'preact';
+import { useContext } from 'preact/hooks';
+import { AppContext } from '../AppContext';
 import { ButtonCounter } from '../components/ButtonCounter';
 import { Card, CardBody, CardText, CardTitle } from '../shared';
 
 export const Home = () => {
+	const { loggerService } = useContext(AppContext);
+
 	const onChildClicked = () => {
-		console.warn('callback from parent triggered');
+		loggerService.warn('callback from parent triggered');
 	}
 
 	return (
