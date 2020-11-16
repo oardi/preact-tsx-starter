@@ -1,8 +1,9 @@
-import { h, Fragment } from 'preact';
+import { h } from 'preact';
 import { useContext } from 'preact/hooks';
 import { AppContext } from '../AppContext';
-import { ButtonCounter } from '../components/ButtonCounter';
+import { ButtonCounter } from '../components';
 import { Card, CardBody, CardText, CardTitle } from '../shared';
+import { Layout } from './Layout';
 
 export const Home = () => {
 	const { loggerService } = useContext(AppContext);
@@ -12,11 +13,7 @@ export const Home = () => {
 	}
 
 	return (
-		<Fragment>
-			<h1>
-				Home
-			</h1>
-
+		<Layout title="Home">
 			<Card>
 				<CardBody>
 					<CardTitle>some title</CardTitle>
@@ -30,6 +27,6 @@ export const Home = () => {
 				name="Click me"
 				onClicked={(e) => onChildClicked()}
 			/>
-		</Fragment>
+		</Layout>
 	);
 }

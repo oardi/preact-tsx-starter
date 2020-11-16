@@ -1,12 +1,10 @@
-import { h, Fragment } from 'preact';
+import { h } from 'preact';
+import { Layout } from './Layout';
 
 export const About = () => (
-	<Fragment>
-		<h1>
-			About
-			</h1>
+	<Layout title="About">
 		<div>
 			lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-			</div>
-	</Fragment>
+		</div>
+	</Layout>
 );

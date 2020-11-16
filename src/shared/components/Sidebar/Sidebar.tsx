@@ -18,7 +18,7 @@ export const Sidebar = ({ title, items }: ISidebarProps) => {
 	return (
 		<nav class="sidebar navbar navbar-expand-lg navbar-dark bg-primary align-items-start">
 			<ul class="navbar-nav navbar-dark accordion d-flex flex-column">
-				<a class="sidebar-brand d-flex align-items-center justify-content-center">
+				<a class="sidebar-brand">
 					<div class="sidebar-brand-icon rotate-n-15">
 					</div>
 					<div class="sidebar-brand-text mx-3">

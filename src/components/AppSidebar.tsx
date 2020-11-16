@@ -20,7 +20,6 @@ export const AppSidebar = () => {
 	const init = async () => {
 		try {
 			const menuJson = await httpService.get<Array<MenuItem>>('./public/menu.json');
-			loggerService.warn(menuJson.data);
 			setItems(menuJson.data);
 		} catch (err) { loggerService.error(err); }
 	}
