@@ -1,21 +1,29 @@
 import { h } from 'preact';
-import { ButtonCounter } from './components/ButtonCounter';
+import { createHashHistory } from 'history';
+import Router, { Link, Route } from 'preact-router';
+import { About } from './pages/About';
+import { Home } from './pages/Home';
 import './style.scss';
 
 export const App = () => {
-	const onChildClicked = (e: number) => {
-		console.warn("callback from parent triggered", e);
-	}
-
 	return (
 		<div className="container pt-2" >
 			<h1>Preact Typescript Starter Template</h1>
 
-			<p>
-				Simple Preact Typescript TSX Template with a custom ButtonCounter Component.
-            </p>
+			<div>
+				<Link class="btn btn-sm btn-primary" activeClassName="active" href="/">Home</Link>
+				<Link class="btn btn-sm btn-primary" activeClassName="active" href="/about">About</Link>
+			</div>
 
-			<ButtonCounter name="click me" onClicked={(e) => onChildClicked(e)} />
+			<Router history={createHashHistory()}>
+				<Route path="/" component={Home} />
+				<Route path="/about" component={About} />
+
+				<div default>
+					404
+      				</div>
+			</Router>
+
 		</div>
 	);
 
