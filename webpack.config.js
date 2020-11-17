@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
 
 		devServer: {
 			open: true,
-			// hot: true
+			hot: true
 		},
 
 		// devtool: "source-map",
@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
 				{
 					test: /\.tsx?$/,
 					exclude: /node_modules/,
-					loader: 'ts-loader'
+					loader: 'babel-loader'
 				},
 				{
 					test: /\.scss$/,
@@ -90,9 +90,9 @@ module.exports = (env, argv) => {
 					},
 				]
 			}),
-			new webpack.DefinePlugin({
-				// define environment vars here
-			})
+			// new webpack.DefinePlugin({
+			// 	// define environment vars here
+			// })
 		],
 
 		optimization: {
