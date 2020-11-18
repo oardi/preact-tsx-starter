@@ -1,9 +1,7 @@
-import { h } from 'preact';
+import { ComponentChildren, h } from 'preact';
 
-export const CardFooter = ({ children }) => {
-	return (
-		<div class="card-footer">
-			{children}
-		</div>
-	);
-}
+export const CardFooter = ({ children }: { children: ComponentChildren }) => (
+	<div class="card-footer">
+		{children}
+	</div>
+);

@@ -1,9 +1,7 @@
-import { h } from 'preact';
+import { ComponentChildren, h } from 'preact';
 
-export const CardText = ({ children }) => {
-	return (
-		<p class="card-text">
-			{children}
-		</p>
-	);
-}
+export const CardText = ({children}: { children: ComponentChildren }) => (
+	<p class="card-text">
+		{children}
+	</p>
+);
