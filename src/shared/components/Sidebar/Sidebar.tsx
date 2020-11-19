@@ -70,11 +70,11 @@ export const Sidebar = ({ title, items, currentUrl }: ISidebarProps) => {
 
 				{menuItems.map(item =>
 					<li class={"nav-item level-0 " + (item.isActive ? "active" : "")}>
-						<a class="nav-link" onClick={() => navigate(item.path)}>{item.id}</a>
+						<a class="nav-link" onClick={() => navigate(`/${item.path}`)}>{item.id}</a>
 
 						{item.items && item.items.map(subItem => (
 							<li class={"nav-item level-1 " + (subItem.isActive ? "active" : "")}>
-								<a class="nav-link" onClick={() => navigate(`${item.path}/${subItem.path}`)}>{subItem.id}</a>
+								<a class="nav-link" onClick={() => navigate(`/${item.path}/${subItem.path}`)}>{subItem.id}</a>
 							</li>
 						))}
 					</li>

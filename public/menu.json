@@ -4,8 +4,8 @@
 		"path": ""
 	},
 	{
-		"id": "components",
-		"path": "components",
+		"id": "showcase",
+		"path": "showcase",
 		"items": [
 			{
 				"id": "card",

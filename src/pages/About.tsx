@@ -1,10 +1,9 @@
 import { h } from 'preact';
 import { Layout } from './Layout';
 
-export const About = () => (
+export const About = () =>
 	<Layout title="About">
 		<div>
 			lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
 		</div>
 	</Layout>
-);

@@ -7,6 +7,8 @@ import { HttpService, LoggerService } from './shared';
 import { AppSidebar } from './components';
 import { AppContext } from './AppContext';
 import { useState } from 'preact/hooks';
+import { Showcase } from './pages/Showcase/Showcase';
+import { ShowcaseCard } from './pages/Showcase';
 
 export const App = () => {
 	const appContext = {
@@ -29,6 +31,8 @@ export const App = () => {
 					<Router onChange={(e) => onRouteChange(e)} history={createHashHistory()}>
 						<Route path="/" component={Home} />
 						<Route path="/about" component={About} />
+						<Route path="/showcase" component={Showcase} />
+						<Route path="/showcase/card" component={ShowcaseCard} />
 
 						<div default>
 							404

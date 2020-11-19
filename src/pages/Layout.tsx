@@ -5,11 +5,8 @@ interface ILayoutProps {
 	title: string;
 }
 
-export const Layout = ({ children, title }: ILayoutProps) => {
-	return (
-		<Fragment>
-			<h1>{title}</h1>
-			{children}
-		</Fragment>
-	);
-}
+export const Layout = ({ children, title }: ILayoutProps) =>
+	<Fragment>
+		<h1>{title}</h1>
+		{children}
+	</Fragment>
