@@ -5,7 +5,13 @@
 	},
 	{
 		"id": "components",
-		"path": "components"
+		"path": "components",
+		"items": [
+			{
+				"id": "card",
+				"path": "card"
+			}
+		]
 	},
 	{
 		"id": "about",

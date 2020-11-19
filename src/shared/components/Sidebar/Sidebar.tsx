@@ -3,22 +3,25 @@ import { route, } from 'preact-router';
 import { useEffect, useState } from 'preact/hooks';
 import './Sidebar.scss';
 
-export interface ISidebarItem {
-	id: string;
-	path: string;
-	icon?: string;
-	isActive?: boolean;
+export class SidebarItemModel {
+	constructor(
+		public id: string,
+		public path: string,
+		public icon?: string,
+		public isActive?: boolean,
+		public items?: Array<SidebarItemModel>) {
+	}
 }
 
 interface ISidebarProps {
 	title: string;
-	items: Array<ISidebarItem>;
+	items: Array<SidebarItemModel>;
 	currentUrl: string;
 }
 
 export const Sidebar = ({ title, items, currentUrl }: ISidebarProps) => {
 
-	const [menuItems, setMenuItems] = useState<Array<ISidebarItem>>([]);
+	const [menuItems, setMenuItems] = useState<Array<SidebarItemModel>>([]);
 
 	useEffect(() => {
 		if (items && items.length > 0) {
@@ -32,13 +35,19 @@ export const Sidebar = ({ title, items, currentUrl }: ISidebarProps) => {
 	}, [currentUrl]);
 
 	const initMenuItems = () => {
-		const test = items.map(item => ({
-			id: item.id,
-			path: item.path,
-			icon: item.icon,
-			isActive: isMenuItemActive(item.path)
-		} as ISidebarItem));
-		setMenuItems(test);
+		const newItems = items.map(item => new SidebarItemModel(
+			item.id,
+			item.path,
+			item.icon,
+			isMenuItemActive(item.path),
+			item.items && item.items.map(subItem => new SidebarItemModel(
+				subItem.id,
+				subItem.path,
+				subItem.icon,
+				isMenuItemActive(`${item.path}/${subItem.path}`),
+			))
+		));
+		setMenuItems(newItems);
 	}
 
 	const isMenuItemActive = (path: string) => {
@@ -61,8 +70,14 @@ export const Sidebar = ({ title, items, currentUrl }: ISidebarProps) => {
 				</a>
 
 				{menuItems.map(item =>
-					<li class={"nav-item " + (item.isActive ? "active" : "")}>
+					<li class={"nav-item level-0 " + (item.isActive ? "active" : "")}>
 						<a class="nav-link" onClick={() => navigate(item.path)}>{item.id}</a>
+
+						{item.items && item.items.map(subItem => (
+							<li class={"nav-item level-1 " + (subItem.isActive ? "active" : "")}>
+								<a class="nav-link" onClick={() => navigate(`${item.path}/${subItem.path}`)}>{subItem.id}</a>
+							</li>
+						))}
 					</li>
 				)}
 			</ul>

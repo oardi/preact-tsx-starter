@@ -25,7 +25,7 @@ export const App = () => {
 			<div class="app">
 				<AppSidebar currentRoute={currentRoute} />
 
-				<div className="container pt-2" >
+				<div className="container-fluid pt-2" >
 					<Router onChange={(e) => onRouteChange(e)} history={createHashHistory()}>
 						<Route path="/" component={Home} />
 						<Route path="/about" component={About} />
