@@ -30,8 +30,7 @@ export const Sidebar = ({ title, items, currentUrl }: ISidebarProps) => {
 	}, [items]);
 
 	useEffect(() => {
-		const changedMenuItems = menuItems.map(item => ({ ...item, isActive: isMenuItemActive(item.path) }));
-		setMenuItems(changedMenuItems);
+		initMenuItems();
 	}, [currentUrl]);
 
 	const initMenuItems = () => {
