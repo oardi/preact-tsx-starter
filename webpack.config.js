@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
 				{
 					test: /\.tsx?$/,
 					exclude: /node_modules/,
-					loader: 'babel-loader'
+					loader: 'ts-loader'
 				},
 				{
 					test: /\.scss$/,

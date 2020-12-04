@@ -4,7 +4,7 @@ import { AppContext } from '../AppContext';
 import { ButtonCounter } from '../components';
 import { Card, CardBody, CardText, CardTitle } from '../shared';
 import { Layout } from './Layout';
-import marked from 'marked';
+import * as marked from 'marked';
 
 export const Home = () => {
 

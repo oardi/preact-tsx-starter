@@ -15,4 +15,4 @@ Preact Typescript Starter with TSX, SCSS and Webpack 5.
 - bootstrap
 - webpack 5
 - typescript 4
-- babel-loader
+- ts-loader
