@@ -16,6 +16,10 @@
 				"path": "card"
 			},
 			{
+				"id": "form",
+				"path": "form"
+			},
+			{
 				"id": "list",
 				"path": "list"
 			},

@@ -1,12 +1,12 @@
 import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import { createHashHistory } from 'history';
 import Router, { Route, RouterOnChangeArgs } from 'preact-router';
 import './style.scss';
-import { About, Home, Showcase, ShowcaseButton, ShowcaseCard, ShowcaseList, ShowcaseModal } from './pages';
+import { About, Home, Showcase, ShowcaseButton, ShowcaseCard, ShowcaseForm, ShowcaseList, ShowcaseModal } from './pages';
 import { HttpService, LoggerService } from './shared';
 import { AppSidebar } from './components';
 import { AppContext } from './AppContext';
-import { useState } from 'preact/hooks';
 
 export const App = () => {
 	const appContext = {
@@ -32,6 +32,7 @@ export const App = () => {
 						<Route path="/showcase" component={Showcase} />
 						<Route path="/showcase/button" component={ShowcaseButton} />
 						<Route path="/showcase/card" component={ShowcaseCard} />
+						<Route path="/showcase/form" component={ShowcaseForm} />
 						<Route path="/showcase/list" component={ShowcaseList} />
 						<Route path="/showcase/modal" component={ShowcaseModal} />
 
