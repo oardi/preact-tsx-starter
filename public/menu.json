@@ -14,6 +14,10 @@
 			{
 				"id": "card",
 				"path": "card"
+			},
+			{
+				"id": "list",
+				"path": "list"
 			}
 		]
 	},
