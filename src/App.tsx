@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { createHashHistory } from 'history';
 import Router, { Route, RouterOnChangeArgs } from 'preact-router';
 import './style.scss';
-import { About, Home, Showcase, ShowcaseButton, ShowcaseCard, ShowcaseList } from './pages';
+import { About, Home, Showcase, ShowcaseButton, ShowcaseCard, ShowcaseList, ShowcaseModal } from './pages';
 import { HttpService, LoggerService } from './shared';
 import { AppSidebar } from './components';
 import { AppContext } from './AppContext';
@@ -33,6 +33,7 @@ export const App = () => {
 						<Route path="/showcase/button" component={ShowcaseButton} />
 						<Route path="/showcase/card" component={ShowcaseCard} />
 						<Route path="/showcase/list" component={ShowcaseList} />
+						<Route path="/showcase/modal" component={ShowcaseModal} />
 
 						<div default>
 							404

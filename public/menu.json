@@ -18,6 +18,10 @@
 			{
 				"id": "list",
 				"path": "list"
+			},
+			{
+				"id": "modal",
+				"path": "modal"
 			}
 		]
 	},

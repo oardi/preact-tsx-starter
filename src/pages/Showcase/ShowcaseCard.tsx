@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { Card, CardBody, CardFooter, CardSubtitle, CardText, CardTitle } from '../../shared';
+import { Card, CardBody, CardSubtitle, CardText, CardTitle } from '../../shared';
 
 export const ShowcaseCard = () => {
 	return (
@@ -12,9 +12,6 @@ export const ShowcaseCard = () => {
 						some card
 					</CardText>
 				</CardBody>
-				<CardFooter>
-					Footer
-				</CardFooter>
 			</Card>
 		</div>
 	);
