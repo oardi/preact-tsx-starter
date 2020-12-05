@@ -1,7 +1,7 @@
 import { ComponentChildren, h } from 'preact';
 
 export const CardSubtitle = ({ children }: { children: ComponentChildren }) => (
-	<h5 class="card-subtitle mb-2">
+	<div class="text-muted mb-2">
 		{children}
-	</h5>
+	</div>
 );

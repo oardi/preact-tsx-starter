@@ -8,7 +8,7 @@ import { AppSidebar } from './components';
 import { AppContext } from './AppContext';
 import { useState } from 'preact/hooks';
 import { Showcase } from './pages/Showcase/Showcase';
-import { ShowcaseCard } from './pages/Showcase';
+import { ShowcaseButton, ShowcaseCard } from './pages/Showcase';
 
 export const App = () => {
 	const appContext = {
@@ -32,6 +32,7 @@ export const App = () => {
 						<Route path="/" component={Home} />
 						<Route path="/about" component={About} />
 						<Route path="/showcase" component={Showcase} />
+						<Route path="/showcase/button" component={ShowcaseButton} />
 						<Route path="/showcase/card" component={ShowcaseCard} />
 
 						<div default>

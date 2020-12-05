@@ -8,6 +8,10 @@
 		"path": "showcase",
 		"items": [
 			{
+				"id": "button",
+				"path": "button"
+			},
+			{
 				"id": "card",
 				"path": "card"
 			}
