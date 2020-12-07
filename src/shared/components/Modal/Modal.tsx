@@ -1,4 +1,4 @@
-import { ComponentChildren, Fragment, h } from 'preact';
+import { ComponentChildren, Fragment, h, VNode } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { ModalHeader } from './ModalHeader';
 import { ModalBody } from './ModalBody';
@@ -7,7 +7,7 @@ import { ModalBackdrop } from './ModalBackdrop';
 interface IModalProps {
 	children: ComponentChildren;
 	header?: string;
-	footer?: string;
+	footer?: string | VNode;
 	onHeaderCloseClick?: Function;
 	onBackdropClick?: Function;
 }
@@ -25,7 +25,7 @@ export const Modal = ({
 	const removeClickListener = () => {
 		if (clickListener) {
 			document.removeEventListener('click', clickListener);
-			clickListener = undefined;
+			clickListener = () => { };
 		}
 	};
 
@@ -59,12 +59,16 @@ export const Modal = ({
 					<div className="modal-content">
 						{
 							header &&
-							<ModalHeader onClose={() => onHeaderCloseClick()}>
+							<ModalHeader onClose={() => onHeaderCloseClick && onHeaderCloseClick()}>
 								{header}
 							</ModalHeader>
 						}
 						<ModalBody>{children}</ModalBody>
-						{footer && footer}
+						{footer &&
+							<div class="modal-footer">
+								{footer}
+							</div>
+						}
 					</div>
 				</div>
 			</div>
