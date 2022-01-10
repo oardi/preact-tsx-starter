@@ -1,1 +1,0 @@
-export enum MODALRESULT { OK = 'OK', CANCEL = 'CANCEL', DELETE = 'DELETE' }

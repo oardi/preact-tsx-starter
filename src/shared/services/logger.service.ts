@@ -1,4 +1,4 @@
-export class LoggerService {
+class LoggerService {
 
 	logType = { log: 'log', info: 'info', warn: 'warn', debug: 'debug', error: 'error' };
 
@@ -42,3 +42,5 @@ export class LoggerService {
 		}
 	}
 }
+
+export const loggerService = new LoggerService();

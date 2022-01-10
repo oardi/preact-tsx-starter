@@ -1,52 +1,33 @@
 import { h } from 'preact';
-import { useContext, useEffect, useState } from 'preact/hooks';
-import { AppContext } from '../AppContext';
+import { route } from 'preact-router';
 import { ButtonCounter } from '../components';
-import { Card, CardBody, CardText, CardTitle } from '../shared';
+import { loggerService } from '../shared';
 import { Layout } from './Layout';
-import * as marked from 'marked';
 
 export const Home = () => {
-
-	const [markup, setMarkup] = useState<string>(undefined);
-	const { loggerService, httpService } = useContext(AppContext);
-
-	useEffect(() => {
-		init();
-	}, []);
-
-	const init = async () => {
-		try {
-			const data = await httpService.get<string>('./public/showcase/showcase-card.md', { responseType: 'arraybuffer' });
-			setMarkup(marked(data.data));
-		} catch (err) { loggerService.error(err); }
-	}
 
 	const onChildClicked = () => {
 		loggerService.warn('callback from parent triggered');
 	}
 
+	const handleGoToAbout = () => {
+		route('/about', true);
+	}
+
 	return (
 		<Layout title="Home">
-
-			<div dangerouslySetInnerHTML={{ __html: markup }}>
-				<span>I will be skipped</span>
-				<p>So do I</p>
+			<div>
+				<ButtonCounter
+					name="Click me"
+					onClicked={(e) => onChildClicked()}
+				/>
 			</div>
 
-			<Card>
-				<CardBody>
-					<CardTitle>some title</CardTitle>
-					<CardText>
-						a card
-					</CardText>
-				</CardBody>
-			</Card>
-
-			<ButtonCounter
-				name="Click me"
-				onClicked={(e) => onChildClicked()}
-			/>
+			<div>
+				<button class="btn btn-primary mt-2" onClick={handleGoToAbout}>
+					go to about
+				</button>
+			</div>
 		</Layout>
 	);
 }
